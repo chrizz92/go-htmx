@@ -5,8 +5,8 @@ tmp_dir = "tmp"
 [build]
   args_bin = []
   bin = "tmp\\main.exe"
-  pre_cmd = ["templ generate"]
-  cmd = "build.bat"
+  pre_cmd = ["air-templ-generation.exe"]
+  cmd = "air-build.exe"
   post_cmd = []
   delay = 1000
   exclude_dir = ["assets", "tmp", "vendor", "testdata"]

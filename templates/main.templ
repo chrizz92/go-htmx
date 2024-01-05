@@ -1,5 +1,16 @@
 package templates
 
+import (
+    "strconv"
+)
+
+var counter = 0
+
+func count() string {
+    counter++
+    return strconv.Itoa(counter)
+}
+
 templ head(){
     <head>
         <meta charset="utf-8"/>
@@ -14,17 +25,24 @@ templ head(){
 templ Root(name string){
     <html>
         @head()
-        <body>
+        <body class="p-2">
             <h1 class="text-3xl font-bold">Hello {name}!</h1>
             <p>Nice to meet you.</p>
-            <button hx-post="/" hx-trigger="click" hx-target="#parent-div" hx-swap="outerHTML">Click Me!</button>
-            <div id="parent-div">
-                <p>Click the button to change this text.</p>
+            <button type="button" hx-post="/" hx-trigger="click" hx-target="#parent-div" hx-swap="outerHTML" class=" bg-primary-500 text-white p-3 font-bold rounded-md">Primary</button>
+            <button type="button" class="bg-danger-700 text-white p-3 rounded-md">Secondary</button>
+            <div id="parent-div" class="text-xl">
+                <p>Click the left button to change this text.</p>
             </div>
         </body>
     </html>
 }
 
 templ Clicked(){
-    <p>Wow, you clicked the button!</p>
+    <div id="parent-div" class="text-2xl">
+        if counter == 0 {
+            <p>Wow, you have clicked the button! {count()} time</p>
+        } else {
+            <p>Wow, you have clicked the button! {count()} times</p>
+        }
+    </div>
 }
